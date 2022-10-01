@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const fetchMessage = createAsyncThunk('message/fetchMessage', async () => {
-  const response = await axios.get(`${BASE_URL}random_message`);
+  const response = await axios.get(`${BASE_URL}`);
   return response.data;
 });
 
