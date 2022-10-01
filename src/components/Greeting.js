@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
+import { FaRecycle } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMessage } from '../redux/message/messageSlice';
 import './Greeting.scss';
 
 const Greeting = () => {
   const message = useSelector((state) => state.message.message);
+  const pending = useSelector((state) => state.message.pending);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMessage());
@@ -21,9 +23,24 @@ const Greeting = () => {
           type="button"
           onClick={() => dispatch(fetchMessage())}
         >
-          Get Random Message
+          <FaRecycle />
+          <p>Message</p>
         </button>
       </section>
+      {pending && (
+        <div className="greeting-loading">
+          <div className="lds-roller">
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      )}
     </main>
   );
 };
